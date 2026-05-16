@@ -1,1 +1,1 @@
-# calculator
+The instructions for this project can be found in https://www.theodinproject.com/lessons/foundations-calculator
