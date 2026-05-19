@@ -49,6 +49,19 @@ const divBtn = document.querySelector('.divBtn');
 divBtn.addEventListener('click', () => {operator = '/'});
 
 const eqBtn = document.querySelector('.eqBtn');
+eqBtn.addEventListener('click', () => {
+    const result = operate(num1, num2, operator);
+    display.textContent = result;
+})
+
+const clear = document.querySelector('.clear');
+clear.addEventListener('click', () => {
+    num1 = undefined;
+    num2 = undefined;
+    operator = undefined;
+    isChoosingFirst = true;
+    display.textContent = '';
+})
 
 let isChoosingFirst = true;
 
@@ -91,12 +104,6 @@ function chooseNumber(number){
         num2 = number;
         isChoosingFirst = true;
         display.textContent = num2;
-        if (operator){
-            const result = operate(num1, num2, operator);
-            eqBtn.addEventListener('click', () => {
-                display.textContent = result;
-            });
-        };
     };
 };
 
