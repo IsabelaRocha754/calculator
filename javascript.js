@@ -37,27 +37,19 @@ let num2 = [];
 
 //EVENT LISTENERS FOR THE OPERATORS
 const addBtn = document.querySelector('.addBtn');
-addBtn.addEventListener('click', () => {operator = '+'});
+addBtn.addEventListener('click', () => {setOperator('+')});
 
 const subBtn = document.querySelector('.subBtn');
-subBtn.addEventListener('click', () => {operator = '-'});
+subBtn.addEventListener('click', () => {setOperator('-')});
 
 const mulBtn = document.querySelector('.mulBtn');
-mulBtn.addEventListener('click', () => {operator = '*'});
+mulBtn.addEventListener('click', () => {setOperator('*')});
 
 const divBtn = document.querySelector('.divBtn');
-divBtn.addEventListener('click', () => {operator = '/'});
+divBtn.addEventListener('click', () => {setOperator('/')});
 
 const eqBtn = document.querySelector('.eqBtn');
-eqBtn.addEventListener('click', () => {
-    const firstNum = Number(num1.join(''));
-    const secondNum = Number(num2.join(''));
-    const result = operate(firstNum, secondNum, operator);
-    display.textContent = result;
-    num1 = result.toString().split('');
-    num2 = [];
-    operator = undefined;
-})
+eqBtn.addEventListener('click', calculate);
 
 const clear = document.querySelector('.clear');
 clear.addEventListener('click', () => {
@@ -66,7 +58,7 @@ clear.addEventListener('click', () => {
     operator = undefined;
     isChoosingFirst = true;
     display.textContent = '';
-})
+});
 
 let isChoosingFirst = true;
 
@@ -106,5 +98,22 @@ function chooseNumber(number){
     else{
         num1.push(number);
         display.textContent = num1.join('');
-    }
+    };
+};
+
+function calculate(){
+    const firstNum = Number(num1.join(''));
+    const secondNum = Number(num2.join(''));
+    const result = operate(firstNum, secondNum, operator);
+    display.textContent = result;
+    num1 = result.toString().split('');
+    num2 = [];
+    operator = undefined;
+};
+
+function setOperator(newOperator){
+    if (operator && num2.length > 0){
+        calculate();
+    };
+    operator = newOperator;
 };
