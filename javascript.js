@@ -32,8 +32,8 @@ const operate = function(num1, num2, operator){
 const display = document.querySelector('.display');
 
 let operator;
-let num1;
-let num2;
+let num1 = [];
+let num2 = [];
 
 //EVENT LISTENERS FOR THE OPERATORS
 const addBtn = document.querySelector('.addBtn');
@@ -50,14 +50,19 @@ divBtn.addEventListener('click', () => {operator = '/'});
 
 const eqBtn = document.querySelector('.eqBtn');
 eqBtn.addEventListener('click', () => {
-    const result = operate(num1, num2, operator);
+    const firstNum = Number(num1.join(''));
+    const secondNum = Number(num2.join(''));
+    const result = operate(firstNum, secondNum, operator);
     display.textContent = result;
+    num1 = result.toString().split('');
+    num2 = [];
+    operator = undefined;
 })
 
 const clear = document.querySelector('.clear');
 clear.addEventListener('click', () => {
-    num1 = undefined;
-    num2 = undefined;
+    num1 = [];
+    num2 = [];
     operator = undefined;
     isChoosingFirst = true;
     display.textContent = '';
@@ -94,16 +99,12 @@ const nine = document.querySelector('.nine');
 nine.addEventListener('click', () => {chooseNumber(9)});
 
 function chooseNumber(number){
-    if (isChoosingFirst){
-        num1 = number;
-        isChoosingFirst = false;
-        display.textContent = num1;
-        console.log(num1);
+    if (operator){
+        num2.push(number);
+        display.textContent = num2.join('');
     }
     else{
-        num2 = number;
-        isChoosingFirst = true;
-        display.textContent = num2;
-    };
+        num1.push(number);
+        display.textContent = num1.join('');
+    }
 };
-
