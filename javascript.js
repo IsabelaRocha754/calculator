@@ -53,11 +53,8 @@ eqBtn.addEventListener('click', calculate);
 
 const clear = document.querySelector('.clear');
 clear.addEventListener('click', () => {
-    num1 = [];
-    num2 = [];
-    operator = undefined;
+    clearCalculator();
     isChoosingFirst = true;
-    display.textContent = '';
 });
 
 let isChoosingFirst = true;
@@ -108,6 +105,52 @@ backspace.addEventListener('click', () => {
     };
 });
 
+document.addEventListener('keydown', (event) => {
+    const key = event.key;
+
+    //NUMBERS
+    if (key >= '0' && key <= '9'){
+        chooseNumber(key);
+    }
+    //DECIMAL
+    else if (key == '.'){
+        chooseNumber('.')
+    }
+    //OPERATORS
+    else if (key == '+'){
+        setOperator('+');
+    }
+    else if (key == '-'){
+        setOperator('-');
+    }
+    else if (key == '*'){
+        setOperator('*');
+    }
+    else if (key == '/'){
+        setOperator('/');
+    }
+    //ENTER
+    else if (key == 'Enter' || key == '='){
+        calculate();
+    }
+    //BACKSPACE
+    else if (key == 'Backspace'){
+        if (!operator){
+            num1.pop();
+            display.textContent = num1.join('');
+        }
+        else{
+            num2.pop();
+            display.textContent = num2.join('');
+        };
+    }
+    //ESCAPE CLEAR
+    else if (key == 'Escape'){
+        clearCalculator();
+        isChoosingFirst = true;
+    }
+})
+
 let justCalculated = false;
 
 function chooseNumber(number){
@@ -118,12 +161,12 @@ function chooseNumber(number){
 
     if (operator){
         num2.push(number);
-        display.textContent = num2.join('');
     }
     else{
         num1.push(number);
-        display.textContent = num1.join('');
     };
+
+    updateDisplay();
 };
 
 function calculate(){
@@ -155,3 +198,19 @@ function setOperator(newOperator){
     };
     operator = newOperator;
 };
+
+function updateDisplay(){
+    if (operator){
+        display.textContent = num2.join('');
+    }
+    else{
+        display.textContent = num1.join('');
+    };
+};
+
+function clearCalculator(){
+    num1 = [];
+    num2 = [];
+    operator = undefined;
+    display.textContent = '';
+}

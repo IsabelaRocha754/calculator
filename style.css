@@ -10,7 +10,7 @@ body{
 .top{
     display: flex;
     width: 600px;
-    height: 100px;
+    height: 150px;
     background-color: #2a2a40;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -52,7 +52,7 @@ body{
     margin: 10px;
     align-items: center;
     border-radius: 20px;
-    font-size: 50px;
+    font-size: 70px;
     font-family: "Liberation Mono";
     background-color: #111827;
     color: #ffffff;
@@ -63,6 +63,9 @@ body{
     justify-content: right;
     flex-grow: 1;
     padding: 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
 }
 
 .clear{
