@@ -93,6 +93,21 @@ nine.addEventListener('click', () => {chooseNumber(9)});
 const zero = document.querySelector('.zero');
 zero.addEventListener('click', () => {chooseNumber(0)});
 
+const point = document.querySelector('.point');
+point.addEventListener('click', () => {chooseNumber('.')});
+
+const backspace = document.querySelector('.backspace');
+backspace.addEventListener('click', () => {
+    if (!operator){
+        num1.pop();
+        display.textContent = num1.join('');
+    }
+    else{
+        num2.pop();
+        display.textContent = num2.join('');
+    };
+});
+
 let justCalculated = false;
 
 function chooseNumber(number){
@@ -123,7 +138,7 @@ function calculate(){
 
         return;
     };
-    
+
     const result = operate(firstNum, secondNum, operator);
     display.textContent = parseFloat(result.toPrecision(10));
 

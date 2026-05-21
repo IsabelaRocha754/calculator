@@ -86,7 +86,9 @@ body{
 .seven,
 .eight,
 .nine,
-.zero{
+.zero,
+.point,
+.backspace{
     display: flex;
     flex-grow: 1;
     justify-content: center;
@@ -108,7 +110,9 @@ body{
 .seven:hover,
 .eight:hover,
 .nine:hover,
-.zero:hover{
+.zero:hover,
+.point:hover,
+.backspace:hover{
     background-color: #52527a;
     transform: scale(1.05);
     cursor: pointer;
