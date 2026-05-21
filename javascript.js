@@ -90,7 +90,17 @@ eight.addEventListener('click', () => {chooseNumber(8)});
 const nine = document.querySelector('.nine');
 nine.addEventListener('click', () => {chooseNumber(9)});
 
+const zero = document.querySelector('.zero');
+zero.addEventListener('click', () => {chooseNumber(0)});
+
+let justCalculated = false;
+
 function chooseNumber(number){
+    if (justCalculated && !operator){
+        num1 = [];
+        justCalculated = false;
+    }
+
     if (operator){
         num2.push(number);
         display.textContent = num2.join('');
@@ -104,11 +114,24 @@ function chooseNumber(number){
 function calculate(){
     const firstNum = Number(num1.join(''));
     const secondNum = Number(num2.join(''));
+    if (secondNum == 0 && operator == '/'){
+        display.textContent = 'ERROR';
+
+        num1 = [];
+        num2 = [];
+        operator = undefined;
+
+        return;
+    };
+    
     const result = operate(firstNum, secondNum, operator);
-    display.textContent = result;
+    display.textContent = parseFloat(result.toPrecision(10));
+
     num1 = result.toString().split('');
     num2 = [];
     operator = undefined;
+
+    justCalculated = true;
 };
 
 function setOperator(newOperator){

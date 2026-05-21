@@ -27,20 +27,21 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 500px;
+    height: 560px;
     width: 100px;
 }
 
 .numbers{
     display: flex;
     flex-direction: column;
-    height: 500px;
+    height: 560px;
     width: 500px;
 }
 
 .first-row,
 .second-row,
-.third-row{
+.third-row,
+.forth-row{
     display: flex;
     flex-grow: 1;
 }
@@ -61,6 +62,7 @@ body{
     display: flex;
     justify-content: right;
     flex-grow: 1;
+    padding: 10px;
 }
 
 .clear{
@@ -83,7 +85,8 @@ body{
 .six,
 .seven,
 .eight,
-.nine{
+.nine,
+.zero{
     display: flex;
     flex-grow: 1;
     justify-content: center;
@@ -104,7 +107,8 @@ body{
 .six:hover,
 .seven:hover,
 .eight:hover,
-.nine:hover{
+.nine:hover,
+.zero:hover{
     background-color: #52527a;
     transform: scale(1.05);
     cursor: pointer;
